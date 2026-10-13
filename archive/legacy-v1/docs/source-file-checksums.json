@@ -1,0 +1,31 @@
+{
+  "retrieved": "2026-10-13",
+  "purpose": "Identify the exact official PDF editions used for manual extraction; see reports-data.mjs for URLs and page references.",
+  "files": [
+    {
+      "year": 2021,
+      "sha256": "d56fa1cec2ae8b784985f620a8177d7ef8c1193c2064465d563b4d637d82a7ce",
+      "bytes": 13360907
+    },
+    {
+      "year": 2022,
+      "sha256": "0ec3075e99400c791a933617b6e4d18e3d541d98d9767293f3e509dfa2674999",
+      "bytes": 47243906
+    },
+    {
+      "year": 2023,
+      "sha256": "2141411dddc4b109720e569cdbae8c51d0d8ecb5320696fe946f6a7de9c553b5",
+      "bytes": 33020334
+    },
+    {
+      "year": 2024,
+      "sha256": "2d7608a96efd51b75713670f13c7c9c80e770594385ed210b2a8b5cca3afbd0b",
+      "bytes": 15962835
+    },
+    {
+      "year": 2025,
+      "sha256": "8da1797d77b764790edead0508245a4afecd03b3e520d6901b5a9e6cc0070e4f",
+      "bytes": 8749016
+    }
+  ]
+}

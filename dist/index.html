@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Analisis independen emisi dan energi PT Unilever Indonesia Tbk 2020–2025 dari sustainability report resmi: tren, peringatan kualitas data, rekomendasi, dan kalkulator faktor emisi Indonesia.">
+  <title>Unilever Indonesia · Analisis Emisi 2020–2025</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f36c7'/%3E%3Cpath d='M8 24V17M16 24V9M24 24V13' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    // Terapkan tema tersimpan sebelum halaman digambar agar tidak berkedip.
+    try { const t = localStorage.getItem('uvi-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Langsung ke konten</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" href="#dashboard">Unilever Indonesia<span>Analisis emisi & energi · 2020–2025</span></a>
+      <div class="masthead-tools">
+        <p class="independent"><strong>Analisis independen.</strong> Bukan situs resmi PT Unilever Indonesia Tbk. Angka diambil dari sustainability report publik.</p>
+        <button type="button" class="theme-toggle" id="theme-toggle">Mode gelap</button>
+      </div>
+    </div>
+    <nav class="tabs" aria-label="Navigasi utama">
+      <a href="#dashboard" data-page="dashboard">Dashboard</a>
+      <a href="#analisis" data-page="analisis">Analisis tren</a>
+      <a href="#aksi" data-page="aksi">Temuan & aksi</a>
+      <a href="#peringatan" data-page="peringatan">Peringatan</a>
+      <a href="#kalkulator" data-page="kalkulator">Kalkulator</a>
+      <a href="#data" data-page="data">Data & metode</a>
+    </nav>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer class="footer">
+    <p>PT Unilever Indonesia Tbk · analisis independen untuk keperluan pembelajaran, bukan publikasi atau pernyataan perusahaan.</p>
+    <p>Data laporan 2020–2025, diverifikasi 13 Oktober 2026. Hasil kalkulator tersimpan hanya di browser ini selama sesi.</p>
+  </footer>
+  <dialog id="chart-dialog" class="chart-dialog" aria-labelledby="chart-dialog-title">
+    <header class="chart-dialog-head">
+      <div><h2 id="chart-dialog-title"></h2><p id="chart-dialog-sub"></p></div>
+      <button type="button" class="dialog-close" data-dialog-close aria-label="Tutup">×</button>
+    </header>
+    <div class="chart-dialog-body" id="chart-dialog-body"></div>
+    <p class="chart-dialog-hint">Tekan Esc atau klik area gelap untuk menutup.</p>
+  </dialog>
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+  <div id="notice" class="notice" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {calculate,project,coverage,validateRow,exportCsv} from '../dist/model.mjs';
+const row=(extra={})=>({id:'a',name:'Fuel',scope:1,category:0,group:'fuel',quantity:1000,factor:2.68,unit:'litre',factorUnit:'litre',...extra});
+test('calculates tonnes once and aggregates by scope',()=>{const x=calculate([row(),row({id:'b',scope:2,group:'electricity',quantity:2000,factor:.8})]); assert.equal(x.total,4.28);assert.deepEqual(x.scopes,[2.68,1.6,0]);});
+test('missing values are unknown; explicit zero is calculated',()=>{const x=calculate([row({quantity:null}),row({id:'b',quantity:0})]);assert.equal(x.missing,1);assert.equal(x.calculated,1);assert.equal(x.total,0);});
+test('rejects negatives, nonfinite numbers, unit mismatch and invalid categories',()=>{for(const r of [row({quantity:-1}),row({factor:Infinity}),row({quantity:NaN}),row({factorUnit:'kg'}),row({scope:3,category:0}),row({scope:2,category:1})]) assert.throws(()=>validateRow(r));});
+test('overlapping reductions compound without double counting',()=>{const p=project([row()],[{enabled:true,groups:['fuel'],percent:50},{enabled:true,groups:['fuel'],percent:50}]);assert.ok(Math.abs(p.projected-.67)<1e-12);assert.ok(Math.abs(p.avoided-2.01)<1e-12);assert.ok(Math.abs(p.percent-75)<1e-12);});
+test('rejects unbounded intervention percentages and handles zero totals',()=>{assert.throws(()=>project([row()],[{enabled:true,groups:['fuel'],percent:101}]));assert.equal(project([],[]).percent,0);});
+test('scope 3 coverage distinguishes incomplete and unassessed',()=>{const c=coverage([row({scope:3,category:1}),row({id:'b',scope:3,category:4,quantity:null})],{15:'na'});assert.equal(c[0].status,'calculated');assert.equal(c[3].status,'incomplete');assert.equal(c[1].status,'unassessed');assert.equal(c[14].status,'na');});
+test('CSV escapes formulas and preserves missing values',()=>{const csv=exportCsv([row({name:'=HYPERLINK("x")',quantity:null})],{company:'Test',year:2025});assert.ok(csv.includes("'=HYPERLINK"));assert.ok(csv.includes('Unknown'));assert.ok(!csv.includes('NaN'));});

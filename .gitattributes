@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# CSV dibuat dengan CRLF (standar RFC 4180) dan dibandingkan byte demi byte oleh tes
+*.csv -text
+*.png binary

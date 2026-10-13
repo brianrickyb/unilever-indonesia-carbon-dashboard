@@ -1,0 +1,67 @@
+﻿company,year,metric_id,metric,value,unit,data_type,formula
+PT Unilever Indonesia Tbk,2020,refrigerantShare,Porsi refrigeran dari Scope 1,1.595818,%,hasil_perhitungan,s1_refrigerant ÷ s1 × 100
+PT Unilever Indonesia Tbk,2020,fuelShare,Porsi gas & light fuel dari Scope 1,98.404484,%,hasil_perhitungan,s1_fuel ÷ s1 × 100
+PT Unilever Indonesia Tbk,2020,componentGap,Selisih Scope 1 − (gas & light fuel + refrigeran),-0.05,t CO2e,hasil_perhitungan,s1 − (s1_fuel + s1_refrigerant)
+PT Unilever Indonesia Tbk,2020,impliedFuelFactor,Faktor implisit bahan bakar on-site,55.814325,kg CO2e/GJ,hasil_perhitungan,s1_fuel × 1000 ÷ en_nonre_onsite
+PT Unilever Indonesia Tbk,2020,renewableShareComputed,Porsi energi terbarukan (dihitung),60.698976,%,hasil_perhitungan,energy_renewable ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2020,recShare,Porsi listrik dicakup REC dari energi total,46.553291,%,hasil_perhitungan,en_rec ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2020,onsiteRenewableShare,Porsi energi terbarukan on-site (biomassa + PV),14.145685,%,hasil_perhitungan,(en_biomass + en_solar) ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2020,fossilOnsiteShare,Porsi bahan bakar fosil on-site,28.147656,%,hasil_perhitungan,en_nonre_onsite ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2020,purchasedGridMwh,Listrik jaringan yang dibeli,165848.8,MWh,hasil_perhitungan,"(en_rec + en_nonre_grid bila dilaporkan) ÷ 3,6"
+PT Unilever Indonesia Tbk,2020,scope2_location_estimate,"Estimasi independen Scope 2 location-based (CM ESDM 2019, Jamali)",144288.456,t CO2,estimasi_independen,"purchasedGridMwh × 0,87"
+PT Unilever Indonesia Tbk,2020,scope2_location_estimate_low,"Estimasi independen Scope 2 location-based, batas bawah (OM ESDM 2019, Jamali)",132679.04,t CO2,estimasi_independen,"purchasedGridMwh × 0,80"
+PT Unilever Indonesia Tbk,2021,refrigerantShare,Porsi refrigeran dari Scope 1,1.110248,%,hasil_perhitungan,s1_refrigerant ÷ s1 × 100
+PT Unilever Indonesia Tbk,2021,fuelShare,Porsi gas & light fuel dari Scope 1,98.889752,%,hasil_perhitungan,s1_fuel ÷ s1 × 100
+PT Unilever Indonesia Tbk,2021,componentGap,Selisih Scope 1 − (gas & light fuel + refrigeran),0,t CO2e,hasil_perhitungan,s1 − (s1_fuel + s1_refrigerant)
+PT Unilever Indonesia Tbk,2021,impliedFuelFactor,Faktor implisit bahan bakar on-site,78.115688,kg CO2e/GJ,hasil_perhitungan,s1_fuel × 1000 ÷ en_nonre_onsite
+PT Unilever Indonesia Tbk,2021,renewableShareComputed,Porsi energi terbarukan (dihitung),73.769459,%,hasil_perhitungan,energy_renewable ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2021,recShare,Porsi listrik dicakup REC dari energi total,57.928142,%,hasil_perhitungan,en_rec ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2021,onsiteRenewableShare,Porsi energi terbarukan on-site (biomassa + PV),15.841317,%,hasil_perhitungan,(en_biomass + en_solar) ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2021,fossilOnsiteShare,Porsi bahan bakar fosil on-site,26.230541,%,hasil_perhitungan,en_nonre_onsite ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2021,purchasedGridMwh,Listrik jaringan yang dibeli,161984.65,MWh,hasil_perhitungan,"(en_rec + en_nonre_grid bila dilaporkan) ÷ 3,6"
+PT Unilever Indonesia Tbk,2021,scope2_location_estimate,"Estimasi independen Scope 2 location-based (CM ESDM 2019, Jamali)",140926.6455,t CO2,estimasi_independen,"purchasedGridMwh × 0,87"
+PT Unilever Indonesia Tbk,2021,scope2_location_estimate_low,"Estimasi independen Scope 2 location-based, batas bawah (OM ESDM 2019, Jamali)",129587.72,t CO2,estimasi_independen,"purchasedGridMwh × 0,80"
+PT Unilever Indonesia Tbk,2022,refrigerantShare,Porsi refrigeran dari Scope 1,3.162315,%,hasil_perhitungan,s1_refrigerant ÷ s1 × 100
+PT Unilever Indonesia Tbk,2022,fuelShare,Porsi gas & light fuel dari Scope 1,96.837685,%,hasil_perhitungan,s1_fuel ÷ s1 × 100
+PT Unilever Indonesia Tbk,2022,componentGap,Selisih Scope 1 − (gas & light fuel + refrigeran),0,t CO2e,hasil_perhitungan,s1 − (s1_fuel + s1_refrigerant)
+PT Unilever Indonesia Tbk,2022,impliedFuelFactor,Faktor implisit bahan bakar on-site,55.794216,kg CO2e/GJ,hasil_perhitungan,s1_fuel × 1000 ÷ en_nonre_onsite
+PT Unilever Indonesia Tbk,2022,renewableShareComputed,Porsi energi terbarukan (dihitung),69.984463,%,hasil_perhitungan,energy_renewable ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2022,recShare,Porsi listrik dicakup REC dari energi total,56.69621,%,hasil_perhitungan,en_rec ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2022,onsiteRenewableShare,Porsi energi terbarukan on-site (biomassa + PV),13.288253,%,hasil_perhitungan,(en_biomass + en_solar) ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2022,fossilOnsiteShare,Porsi bahan bakar fosil on-site,30.015537,%,hasil_perhitungan,en_nonre_onsite ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2022,purchasedGridMwh,Listrik jaringan yang dibeli,150412.494444,MWh,hasil_perhitungan,"(en_rec + en_nonre_grid bila dilaporkan) ÷ 3,6"
+PT Unilever Indonesia Tbk,2022,scope2_location_estimate,"Estimasi independen Scope 2 location-based (CM ESDM 2019, Jamali)",130858.870167,t CO2,estimasi_independen,"purchasedGridMwh × 0,87"
+PT Unilever Indonesia Tbk,2022,scope2_location_estimate_low,"Estimasi independen Scope 2 location-based, batas bawah (OM ESDM 2019, Jamali)",120329.995556,t CO2,estimasi_independen,"purchasedGridMwh × 0,80"
+PT Unilever Indonesia Tbk,2023,refrigerantShare,Porsi refrigeran dari Scope 1,0.935695,%,hasil_perhitungan,s1_refrigerant ÷ s1 × 100
+PT Unilever Indonesia Tbk,2023,fuelShare,Porsi gas & light fuel dari Scope 1,99.064305,%,hasil_perhitungan,s1_fuel ÷ s1 × 100
+PT Unilever Indonesia Tbk,2023,componentGap,Selisih Scope 1 − (gas & light fuel + refrigeran),0,t CO2e,hasil_perhitungan,s1 − (s1_fuel + s1_refrigerant)
+PT Unilever Indonesia Tbk,2023,impliedFuelFactor,Faktor implisit bahan bakar on-site,55.791872,kg CO2e/GJ,hasil_perhitungan,s1_fuel × 1000 ÷ en_nonre_onsite
+PT Unilever Indonesia Tbk,2023,renewableShareComputed,Porsi energi terbarukan (dihitung),68.933364,%,hasil_perhitungan,energy_renewable ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2023,recShare,Porsi listrik dicakup REC dari energi total,57.998181,%,hasil_perhitungan,en_rec ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2023,onsiteRenewableShare,Porsi energi terbarukan on-site (biomassa + PV),10.935183,%,hasil_perhitungan,(en_biomass + en_solar) ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2023,fossilOnsiteShare,Porsi bahan bakar fosil on-site,31.066636,%,hasil_perhitungan,en_nonre_onsite ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2023,purchasedGridMwh,Listrik jaringan yang dibeli,135015.55,MWh,hasil_perhitungan,"(en_rec + en_nonre_grid bila dilaporkan) ÷ 3,6"
+PT Unilever Indonesia Tbk,2023,scope2_location_estimate,"Estimasi independen Scope 2 location-based (CM ESDM 2019, Jamali)",117463.5285,t CO2,estimasi_independen,"purchasedGridMwh × 0,87"
+PT Unilever Indonesia Tbk,2023,scope2_location_estimate_low,"Estimasi independen Scope 2 location-based, batas bawah (OM ESDM 2019, Jamali)",108012.44,t CO2,estimasi_independen,"purchasedGridMwh × 0,80"
+PT Unilever Indonesia Tbk,2024,refrigerantShare,Porsi refrigeran dari Scope 1,2.280845,%,hasil_perhitungan,s1_refrigerant ÷ s1 × 100
+PT Unilever Indonesia Tbk,2024,fuelShare,Porsi gas & light fuel dari Scope 1,97.719155,%,hasil_perhitungan,s1_fuel ÷ s1 × 100
+PT Unilever Indonesia Tbk,2024,componentGap,Selisih Scope 1 − (gas & light fuel + refrigeran),0,t CO2e,hasil_perhitungan,s1 − (s1_fuel + s1_refrigerant)
+PT Unilever Indonesia Tbk,2024,impliedFuelFactor,Faktor implisit bahan bakar on-site,56.106811,kg CO2e/GJ,hasil_perhitungan,s1_fuel × 1000 ÷ en_nonre_onsite
+PT Unilever Indonesia Tbk,2024,renewableShareComputed,Porsi energi terbarukan (dihitung),73.864164,%,hasil_perhitungan,energy_renewable ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2024,recShare,Porsi listrik dicakup REC dari energi total,61.809783,%,hasil_perhitungan,en_rec ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2024,onsiteRenewableShare,Porsi energi terbarukan on-site (biomassa + PV),12.054381,%,hasil_perhitungan,(en_biomass + en_solar) ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2024,fossilOnsiteShare,Porsi bahan bakar fosil on-site,26.135836,%,hasil_perhitungan,en_nonre_onsite ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2024,purchasedGridMwh,Listrik jaringan yang dibeli,125403.375,MWh,hasil_perhitungan,"(en_rec + en_nonre_grid bila dilaporkan) ÷ 3,6"
+PT Unilever Indonesia Tbk,2024,scope2_location_estimate,"Estimasi independen Scope 2 location-based (CM ESDM 2019, Jamali)",109100.93625,t CO2,estimasi_independen,"purchasedGridMwh × 0,87"
+PT Unilever Indonesia Tbk,2024,scope2_location_estimate_low,"Estimasi independen Scope 2 location-based, batas bawah (OM ESDM 2019, Jamali)",100322.7,t CO2,estimasi_independen,"purchasedGridMwh × 0,80"
+PT Unilever Indonesia Tbk,2025,refrigerantShare,Porsi refrigeran dari Scope 1,3.541406,%,hasil_perhitungan,s1_refrigerant ÷ s1 × 100
+PT Unilever Indonesia Tbk,2025,fuelShare,Porsi gas & light fuel dari Scope 1,96.458594,%,hasil_perhitungan,s1_fuel ÷ s1 × 100
+PT Unilever Indonesia Tbk,2025,componentGap,Selisih Scope 1 − (gas & light fuel + refrigeran),0,t CO2e,hasil_perhitungan,s1 − (s1_fuel + s1_refrigerant)
+PT Unilever Indonesia Tbk,2025,impliedFuelFactor,Faktor implisit bahan bakar on-site,57.170012,kg CO2e/GJ,hasil_perhitungan,s1_fuel × 1000 ÷ en_nonre_onsite
+PT Unilever Indonesia Tbk,2025,renewableShareComputed,Porsi energi terbarukan (dihitung),80.315335,%,hasil_perhitungan,energy_renewable ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2025,recShare,Porsi listrik dicakup REC dari energi total,65.309343,%,hasil_perhitungan,en_rec ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2025,onsiteRenewableShare,Porsi energi terbarukan on-site (biomassa + PV),15.005992,%,hasil_perhitungan,(en_biomass + en_solar) ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2025,fossilOnsiteShare,Porsi bahan bakar fosil on-site,19.684665,%,hasil_perhitungan,en_nonre_onsite ÷ energy_total × 100
+PT Unilever Indonesia Tbk,2025,purchasedGridMwh,Listrik jaringan yang dibeli,122362.247222,MWh,hasil_perhitungan,"(en_rec + en_nonre_grid bila dilaporkan) ÷ 3,6"
+PT Unilever Indonesia Tbk,2025,scope2_location_estimate,"Estimasi independen Scope 2 location-based (CM ESDM 2019, Jamali)",106455.155083,t CO2,estimasi_independen,"purchasedGridMwh × 0,87"
+PT Unilever Indonesia Tbk,2025,scope2_location_estimate_low,"Estimasi independen Scope 2 location-based, batas bawah (OM ESDM 2019, Jamali)",97889.797778,t CO2,estimasi_independen,"purchasedGridMwh × 0,80"
