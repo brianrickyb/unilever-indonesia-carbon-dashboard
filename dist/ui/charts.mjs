@@ -5,7 +5,11 @@
 import { esc, num, compact, unitLabel } from './format.mjs';
 
 const H = 270;
-const M = { top: 34, right: 18, bottom: 34, left: 52 };
+const WIDE = { top: 34, right: 18, bottom: 34, left: 52 };
+const NARROW = { top: 34, right: 10, bottom: 34, left: 42 };
+// Margin dipilih per grafik: di layar HP ruang plot lebih penting daripada jarak tepi.
+let M = WIDE;
+const useMargins = width => { M = width < 400 ? NARROW : WIDE; };
 
 function niceTicks(max, count = 4) {
   if (!(max > 0)) return [0, 1];
@@ -35,6 +39,7 @@ function bandX(width, years) {
 // Grafik garis satu atau lebih seri dengan celah untuk data kosong.
 export function lineChart({ width, years, series, unit, selectedYear, annotations = [], decimals = 2, label, height = 270 }) {
   const H = height;
+  useMargins(width);
   const all = series.flatMap(s => s.values.map(p => p.v)).filter(v => v !== null);
   const ticks = niceTicks(Math.max(...all, 0) * 1.08);
   const max = ticks.at(-1);
@@ -69,6 +74,7 @@ export function lineChart({ width, years, series, unit, selectedYear, annotation
 // Kolom bertumpuk (atau satu seri). Segmen null tidak digambar; tahun tanpa data diberi tanda.
 export function columnChart({ width, years, stacks, data, unit, selectedYear, annotations = [], decimals = 0, label, totalLabel = true, missingText = {}, height = 270 }) {
   const H = height;
+  useMargins(width);
   const totals = years.map(yr => stacks.reduce((s, k) => s + (data[yr]?.[k.key] ?? 0), 0));
   const ticks = niceTicks(Math.max(...totals, 0) * 1.1);
   const max = ticks.at(-1);
@@ -95,7 +101,9 @@ export function columnChart({ width, years, stacks, data, unit, selectedYear, an
       acc += v;
     });
     const missing = stacks.filter(k => !known.includes(k));
-    if (totalLabel) body += `<text class="value${dim}" x="${x(yr)}" y="${y(totals[i]) - 8}" text-anchor="middle">${max < 1000 ? num(totals[i], decimals) : compact(totals[i])}${missing.length && stacks.length > 1 ? '*' : ''}</text>`;
+    // Kolom sempit (HP): label total hanya untuk tahun terpilih agar angka tidak bertumpuk; sisanya lewat tooltip.
+    const roomy = band >= 52 || !selectedYear || yr === selectedYear;
+    if (totalLabel && roomy) body += `<text class="value${dim}" x="${x(yr)}" y="${y(totals[i]) - 8}" text-anchor="middle">${max < 1000 ? num(totals[i], decimals) : compact(totals[i])}${missing.length && stacks.length > 1 ? '*' : ''}</text>`;
   });
   const legend = stacks.length > 1 ? `<div class="legend">${stacks.map(s => `<span><i style="background:${s.color}"></i>${esc(s.label)}</span>`).join('')}</div>` : '';
   return `${legend}<svg class="chart" width="${width}" height="${H}" viewBox="0 0 ${width} ${H}" role="img" aria-label="${esc(label)}">${frame(width, ticks, y, unit, years, x, selectedYear, H)}${annotationMarks(annotations, x, H)}${body}</svg>`;
@@ -110,7 +118,9 @@ function roundedTop(x, y, w, h, r) {
 // Batang horizontal berkelompok (mis. Scope 3 2020 vs 2021).
 export function groupedBars({ width, rows, keys, unit, label, decimals = 0, barH = 12 }) {
   const max = niceTicks(Math.max(...rows.flatMap(r => keys.map(k => r[k.key] ?? 0))) * 1.05).at(-1);
-  const labelW = Math.min(170, width * 0.38), right = 70, gap = 4, rowH = keys.length * (barH + gap) + 18;
+  // Layar sempit: label di atas batang (lebar penuh) agar nama kelompok tidak terpotong.
+  const stacked = width < 480;
+  const labelW = stacked ? 0 : Math.min(170, width * 0.38), right = stacked ? 56 : 70, gap = 4, rowH = keys.length * (barH + gap) + 18 + (stacked ? 16 : 0);
   const h = rows.length * rowH + 10;
   const x = v => labelW + (width - labelW - right) * v / max;
   let body = '';
@@ -118,7 +128,7 @@ export function groupedBars({ width, rows, keys, unit, label, decimals = 0, barH
     const top = 8 + i * rowH;
     body += `<text class="row-label" x="0" y="${top + 11}">${esc(r.label)}</text>`;
     keys.forEach((k, j) => {
-      const v = r[k.key], yy = top + 16 + j * (barH + gap) - 14;
+      const v = r[k.key], yy = top + (stacked ? 18 : 2) + j * (barH + gap);
       if (v === null || v === undefined) {
         body += `<text class="tick" x="${labelW}" y="${yy + 10}">n/a</text>`;
         return;

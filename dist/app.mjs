@@ -47,6 +47,7 @@ function render({ keepScroll = false, focus = null } = {}) {
     a.classList.toggle('active', on);
     if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
+  scrollActiveTab();
   const y = scrollY;
   $('#main').innerHTML = VIEWS[state.page](state);
   drawCharts();
@@ -59,17 +60,27 @@ function drawCharts() {
   document.querySelectorAll('[data-chart]').forEach(box => {
     const fn = specs[box.dataset.chart];
     if (!fn) return;
-    const w = Math.max(280, Math.floor(box.clientWidth));
+    const w = Math.max(220, Math.floor(box.clientWidth));
     box.innerHTML = fn(w);
   });
 }
+
+// Tab di HP bisa digeser: pastikan tab aktif terlihat dan tepi kanan memudar selama masih ada tab tersembunyi.
+const tabs = $('.tabs');
+function syncTabFade() { tabs.classList.toggle('can-scroll', tabs.scrollLeft + tabs.clientWidth < tabs.scrollWidth - 4); }
+function scrollActiveTab() {
+  const a = tabs.querySelector('a.active');
+  if (a && tabs.scrollWidth > tabs.clientWidth) tabs.scrollLeft = Math.max(0, a.offsetLeft - (tabs.clientWidth - a.offsetWidth) / 2);
+  syncTabFade();
+}
+tabs.addEventListener('scroll', syncTabFade, { passive: true });
 
 let resizeTimer, lastWidth = innerWidth;
 addEventListener('resize', () => {
   if (innerWidth === lastWidth) return;
   lastWidth = innerWidth;
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(drawCharts, 120);
+  resizeTimer = setTimeout(() => { drawCharts(); syncTabFade(); }, 120);
 });
 addEventListener('hashchange', () => { render(); scrollTo(0, 0); $('#main').focus({ preventScroll: true }); });
 
@@ -82,7 +93,10 @@ function showTip(el, x, y) {
   tip.style.left = Math.max(8, Math.min(x + 14, innerWidth - w - 8)) + 'px';
   tip.style.top = Math.max(8, y - h - 12 < 8 ? y + 18 : y - h - 12) + 'px';
 }
-document.addEventListener('pointermove', e => { const t = e.target.closest?.('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); else tip.hidden = true; });
+document.addEventListener('pointermove', e => { if (e.pointerType === 'touch') return; const t = e.target.closest?.('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); else tip.hidden = true; });
+// Layar sentuh tidak punya hover: ketuk titik/batang untuk menampilkan angka, ketuk di luar untuk menutup.
+document.addEventListener('pointerdown', e => { if (e.pointerType !== 'touch') return; const t = e.target.closest?.('[data-tip]'); if (t) showTip(t, e.clientX, e.clientY); else tip.hidden = true; });
+addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
 document.addEventListener('focusin', e => { const t = e.target.closest?.('[data-tip]'); if (t) { const r = t.getBoundingClientRect(); showTip(t, r.left + r.width / 2, r.top); } });
 document.addEventListener('focusout', () => { tip.hidden = true; });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') tip.hidden = true; });
@@ -222,7 +236,8 @@ function renderDialog() {
   const { card } = dialogSource;
   const body = $('#chart-dialog-body');
   const box = card.querySelector('[data-chart]');
-  const w = Math.max(280, Math.floor(body.clientWidth - 44));
+  const cs = getComputedStyle(body);
+  const w = Math.max(220, Math.floor(body.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)));
   if (box) {
     const h = Math.max(300, Math.min(innerHeight - 240, Math.round(w * 0.5)));
     const fn = chartSpecs(state)[box.dataset.chart];
