@@ -1,59 +1,63 @@
-# Unilever Indonesia — Analisis Emisi & Energi 2020–2025
+# Unilever Indonesia: Emissions & Energy Analysis 2020–2025
 
-Dashboard analisis independen berdasarkan enam sustainability report resmi **PT Unilever Indonesia Tbk** (2020–2025). Bukan situs resmi perusahaan dan tidak memuat data Unilever global.
+An independent analysis dashboard built from six official sustainability reports of **PT Unilever Indonesia Tbk** (2020–2025). It is not an official company site and contains no global Unilever data.
 
-## Menjalankan
+**Live:** [unilever-indonesia-carbon-dashboard.vercel.app](https://unilever-indonesia-carbon-dashboard.vercel.app/) (interface in Indonesian)
 
-Butuh Node.js 20+, tanpa dependensi.
+Built as a 3-person capstone for the KSU4IRTC Carbon Management module (UMN × Silla University × KOICA).
+
+## Running
+
+Requires Node.js 20+; there are no dependencies to install.
 
 ```
-npm run dev            # http://127.0.0.1:4173  (PORT=4174 npm run dev bila port dipakai)
-npm test               # 29 tes: dataset, analisis/alert, kalkulator, ekspor
-npm run build:data     # tulis ulang data/ dari dist/data/official.mjs
-npm run verify:pdf -- <folder berisi 2020.pdf…2025.pdf> data/observations-all-versions.json
+npm run dev            # http://127.0.0.1:4173  (PORT=4174 npm run dev if the port is taken)
+npm test               # 29 tests: dataset, analysis/alerts, calculator, export
+npm run build:data     # regenerate data/ from dist/data/official.mjs
+npm run verify:pdf -- <folder with 2020.pdf…2025.pdf> data/observations-all-versions.json
 ```
 
-`dist/` adalah situs statis yang bisa di-host di mana saja.
+`dist/` is a static site that can be hosted anywhere.
 
 ## Deploy (Vercel)
 
-Repo ini siap di-import di [vercel.com/new](https://vercel.com/new). `vercel.json` menyajikan folder `dist/` dan menjalankan `npm test` sebagai build, jadi deploy gagal bila ada tes yang gagal. Tidak ada dependensi yang perlu diinstal. Setiap push ke branch `main` otomatis di-deploy ulang.
+The repo can be imported directly at [vercel.com/new](https://vercel.com/new). `vercel.json` serves the `dist/` folder and runs `npm test` as the build step, so a deploy fails if any test fails. Every push to `main` redeploys automatically.
 
-## Halaman
+## Pages
 
-| Halaman | Isi |
+| Page | Contents |
 | --- | --- |
-| Dashboard | Satu layar untuk capstone: problem statement, bar peringatan, 5 kartu KPI (definisi lewat tombol ⓘ), tren emisi operasional, insight box, perbandingan scope, kontribusi sumber. Pilihan tahun 2020–2025 |
-| Analisis tren | Pilih indikator; tren dengan celah untuk data kosong; komposisi Scope 1, bauran energi, intensitas, Scope 3 2020 vs 2021; tabel lengkap dan unduhan |
-| Temuan & aksi | 3 temuan dipasangkan dengan 3 rekomendasi (tim, prioritas, KPI, langkah 30–90 hari di balik "Detail"); simulasi pengurangan |
-| Peringatan | Ringkasan jumlah, daftar peringatan yang bisa dibuka untuk dampak & tindak lanjut, tabel aturan & ambang |
-| Kalkulator | Pilih scope (tombol), sumber emisi, jumlah, satuan, nama; faktor dan pratinjau hasil muncul otomatis; daftar hasil dan unduh CSV |
-| Data & metode | Tombol unduh dataset, laporan sumber, aturan membaca data, revisi, data dictionary, metode estimasi, faktor emisi |
+| Dashboard | One-screen capstone view: problem statement, alert bar, 5 KPI cards (definitions behind the ⓘ button), operational emissions trend, insight box, scope comparison, source contribution. Year selection 2020–2025 |
+| Trend analysis | Choose an indicator; trends with visible gaps for missing data; Scope 1 composition, energy mix, intensity, Scope 3 2020 vs. 2021; full table and download |
+| Findings & actions | 3 findings paired with 3 recommendations (team, priority, KPI, 30–90-day steps behind "Details"); reduction simulation |
+| Alerts | Count summary, expandable alert list with impact and follow-up, table of rules and thresholds |
+| Calculator | Pick a scope, emission source, amount, unit, and name; the factor and a result preview appear automatically; results list and CSV download |
+| Data & method | Dataset downloads, source reports, rules for reading the data, revisions, data dictionary, estimation method, emission factors |
 
-Tautan lama (`#ringkasan`, `#tren`, `#temuan`, `#rekomendasi`) diarahkan otomatis ke halaman baru.
+Old links (`#ringkasan`, `#tren`, `#temuan`, `#rekomendasi`) redirect automatically to the new pages.
 
-## Struktur
+## Structure
 
 ```
-dist/data/official.mjs   dataset resmi (sumber tunggal), semua versi + status
-dist/data/factors.mjs    katalog faktor emisi kalkulator
-dist/lib/analysis.mjs    turunan, estimasi, alert, insight, rekomendasi, simulasi
-dist/lib/calculator.mjs  validasi dan perhitungan kalkulator
-dist/lib/export.mjs      CSV/JSON (dipakai UI dan build)
-dist/ui/                 grafik SVG, tampilan, format angka
-dist/app.mjs             routing, filter, interaksi
-data/                    dataset bersih (CSV, JSON, data dictionary) — hasil build
-docs/                    catatan kualitas data, metode & sumber, ringkasan perubahan
-tools/verify_pdf_values.py  verifikasi angka terhadap PDF
-archive/legacy-v1/       versi sebelumnya (2021–2025), disimpan untuk riwayat
+dist/data/official.mjs   official dataset (single source of truth), all versions + status
+dist/data/factors.mjs    calculator emission-factor catalogue
+dist/lib/analysis.mjs    derivations, estimates, alerts, insights, recommendations, simulation
+dist/lib/calculator.mjs  calculator validation and computation
+dist/lib/export.mjs      CSV/JSON (used by the UI and the build)
+dist/ui/                 SVG charts, views, number formatting
+dist/app.mjs             routing, filters, interaction
+data/                    clean datasets (CSV, JSON, data dictionary), generated by the build
+docs/                    data-quality notes, method & sources, change summary
+tools/verify_pdf_values.py  verifies figures against the PDFs
+archive/legacy-v1/       previous version (2021–2025), kept for history
 ```
 
 ## Dataset
 
-- `data/unilever-indonesia-emissions-2020-2025.csv` / `.json` — seri utama, 27 indikator × 6 tahun.
-- `data/unilever-indonesia-all-versions.csv` — semua angka termasuk revisi dan angka yang bertentangan.
-- `data/unilever-indonesia-tableau.csv` — format panjang; `data_type` memisahkan resmi/hasil hitung/estimasi; `sum_safe` menandai baris yang boleh dijumlahkan.
+- `data/unilever-indonesia-emissions-2020-2025.csv` / `.json`: the main series, 27 indicators × 6 years.
+- `data/unilever-indonesia-all-versions.csv`: every figure, including revisions and conflicting values.
+- `data/unilever-indonesia-tableau.csv`: long format; `data_type` separates official / calculated / estimated values; `sum_safe` marks rows that can be summed.
 - `data/unilever-indonesia-derived-metrics.csv`, `data/unilever-indonesia-alerts.csv`, `data/emission-factors-calculator.csv`.
 - `data/DATA-DICTIONARY.md`, `docs/data-quality-notes.md`, `docs/method-and-sources.md`.
 
-Aturan utama: nilai kosong = null (bukan nol) dengan status `reported_dash` / `not_disclosed` / `not_published`; tidak ada interpolasi; subtotal tidak dijumlahkan dengan komponen; total Scope 1–3 hanya ditampilkan bila dilaporkan (2020, 2021).
+Core rules: an empty value is null (never zero), with status `reported_dash` / `not_disclosed` / `not_published`; no interpolation; subtotals are never added to their components; total Scope 1–3 is shown only where it was reported (2020, 2021).
